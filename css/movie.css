@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+}
+
+.container {
+    font-family: 'Nunito', sans-serif;
+    width: 80%;
+}
+
+.movie,
+.cast {
+    float: left;
+}
