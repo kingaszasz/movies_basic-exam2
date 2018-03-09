@@ -6,19 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/movie.css" type="text/css">
 
     <title>Document</title>
 </head>
-<div class="container">
-    <h2>Title</h2>
-    <img src="/img/covers/amadeus.jpg" alt="amadeus">
-    <p>categories</p>
-    <p>timeInMinutes</p>
-    <p>premierYear</p>
-</div>
 
 <body>
+
+    <div id="stat">
+
+    </div>
+    <div id="search">
+        <form>
+            <input type="text" name="search" id="find" placeholder="Írd be, amit keresel">
+            <select name="searchBy">
+                <option value="title">Cím</option>
+                <option value="director">Rendező</option>
+                <option value="actor">Szereplő</option>
+            </select>
+            <input type="button" value="Keres" id="btn">
+        </form>
+
+    </div>
+
+    <div class="container"></div>
+
     <script src="/js/movies.js"></script>
 </body>
 

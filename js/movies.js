@@ -11,13 +11,17 @@ function getData(url, callback) {
 
 function onSuccess(xhttp) {
     var movieData = JSON.parse(xhttp.responseText);
-    //console.log(movieData);
 
     sortByName(movieData);
     console.log(movieData);
 
     fixCategoryNames(movieData);
     generateMovieView(movieData);
+    stat(movieData);
+
+    document.getElementById('btn').addEventListener('click', function () {
+        search(movieData);
+    });
 
 }
 
@@ -130,4 +134,54 @@ function generateMovieView(data) {
         container += `</div>`
     }
     document.getElementsByClassName('container')[0].innerHTML = container;
+}
+
+function search(data) {
+    var text = document.getElementById('find');
+    var found = false;
+    var newData = {};
+    if (!text.value || text.value == ' ') {
+        text.value = "Írj be egy címet, rendező vagy szereplő nevet";
+    } else {
+        for (var i = 0; i < data.movies.length; i++) {
+            if (data.movies[i].title == text.value) {
+                newData = data.movies[i];
+                console.log(newData);
+                found = true;
+            }
+        }
+        if (!found) {
+            text.value = "not found!";
+        }
+    }
+}
+
+function stat(data) {
+    /* 
+        o	Az összes színész neve, és mellette, hogy hány filmben szerepel
+        o	A filmkatagória neve, és mellette, hogy hány film tartozik az adott kategóriába*/
+    let statContent = '';
+    let sum = 0;
+    let avg = 0;
+    let actors = [{
+        name: '',
+        act: 0
+    }];
+
+    for (let i = 0; i < data.movies.length; i++) {
+        sum += parseInt(data.movies[i].timeInMinutes);
+        /*for (let j = 0; j < data.movies[i].cast.length; j++) {
+            actors[i].name = data.movies[i].cast[j].name;
+            actors[i].act += 1;
+        }*/
+    }
+    sum = (sum / 60).toFixed(2);
+    avg = (sum / data.movies.length).toFixed(2);
+
+
+    statContent = `<p> Az összes film hossza : ${sum} óra <br>
+                    Az összes film hosszának átlaga: ${avg} óra <br>
+                    </p>`
+
+    document.getElementById('stat').innerHTML = statContent;
 }
