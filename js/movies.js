@@ -16,6 +16,8 @@ function onSuccess(xhttp) {
     sortByName(movieData);
     console.log(movieData);
 
+    fixCategoryNames(movieData)
+
 
 }
 
@@ -30,6 +32,42 @@ function sortByName(data) {
                 data.movies[i] = data.movies[j];
                 data.movies[j] = temp;
             }
+        }
+    }
+}
+
+
+function fixCategoryNames(data) {
+    const upperCase = {
+        a: 'A',
+        b: 'B',
+        c: 'C',
+        d: 'D',
+        e: 'E',
+        f: 'F',
+        g: 'G',
+        h: 'H',
+        i: 'I',
+        j: 'J',
+        k: 'K',
+        l: 'L',
+        m: 'M',
+        n: 'M',
+        o: 'O',
+        p: 'P',
+        r: 'R',
+        s: 'S',
+        t: 'T',
+        u: 'U',
+        v: 'V',
+        w: 'W',
+        z: 'Z'
+    }
+
+    for (let i = 0; i < data.movies.length; i++) {
+        for (j in data.movies[i].categories) {
+            data.movies[i].categories[j] = data.movies[i].categories[j].replace(/^[a-z]/, c => upperCase[c]);
+            console.log(data.movies[i].categories[j]);
         }
     }
 }
