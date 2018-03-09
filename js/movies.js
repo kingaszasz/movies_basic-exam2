@@ -98,11 +98,10 @@ function showMovie(i, data) {
     let divMovie = `<div class="movie">
                     <h2> Cím: ${data.movies[i].title}</h2>
                     <img src="/img/covers/${removesShit(data.movies[i].title)}.jpg" alt="${data.movies[i].title}">
-                    <p>Kategória: ${data.movies[i].categories.join(', ')}</p>
-                    <p>Hossz: ${data.movies[i].timeInMinutes} perc </p>
-                    <p>Premier: ${data.movies[i].premierYear} </p>
-                    <p>Premier: ${data.movies[i].directors.join(', ')}</p>
-                    `;
+                    <p>Kategória: ${data.movies[i].categories.join(', ')} <br>
+                    Hossz: ${data.movies[i].timeInMinutes} perc <br>
+                    Premier: ${data.movies[i].premierYear} <br>
+                    Premier: ${data.movies[i].directors.join(', ')}</p>`;
 
     return divMovie;
 }
@@ -110,8 +109,9 @@ function showMovie(i, data) {
 function showActors(i, j, data) {
     let divCast = `<div class="cast">
                     <img src="/img/actors/${removesShit(data.movies[i].cast[j].name)}.jpg" alt="${data.movies[i].cast[j].name}">
-                    <p>${data.movies[i].cast[j].name} (${data.movies[i].cast[j].characterName})</p>
-                    <p>${data.movies[i].cast[j].birthYear}, ${data.movies[i].cast[j].birthCountry},${data.movies[i].cast[j].birthCity} </p>
+                    <p>${data.movies[i].cast[j].name} <br>
+                    (${data.movies[i].cast[j].characterName}) <br>
+                    ${data.movies[i].cast[j].birthYear}, ${data.movies[i].cast[j].birthCountry},${data.movies[i].cast[j].birthCity} </p>
                     </div>`;
 
     return divCast;
@@ -127,7 +127,7 @@ function generateMovieView(data) {
         for (let j = 0; j < data.movies[i].cast.length; j++) {
             container += showActors(i, j, data);
         }
+        container += `</div>`
     }
-    container += `</div>`
     document.getElementsByClassName('container')[0].innerHTML = container;
 }

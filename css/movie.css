@@ -4,10 +4,29 @@ body {
 
 .container {
     font-family: 'Nunito', sans-serif;
-    width: 80%;
+    width: 95%;
+    margin: auto;
 }
 
 .movie,
 .cast {
     float: left;
+}
+
+.movie {
+    border: solid 1px black;
+    width: 40%;
+    border-radius: 5%;
+    padding: 20px;
+    margin: 10px;
+}
+
+.cast {
+    margin-right: 20px;
+    font-weight: 0.8em;
+}
+
+.cast img {
+    border-radius: 50%;
+    width: 100px;
 }
