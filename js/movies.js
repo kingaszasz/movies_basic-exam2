@@ -12,6 +12,24 @@ function getData(url, callback) {
 function onSuccess(xhttp) {
     var movieData = JSON.parse(xhttp.responseText);
     console.log(movieData);
+
+    sortByName(movieData);
+    console.log(movieData);
+
+
 }
 
 getData('json/movies.json', onSuccess);
+
+function sortByName(data) {
+    let temp = [];
+    for (let i = 0; i < data.movies.length - 1; i++) {
+        for (var j = i + 1; j < data.movies.length; j++) {
+            if (data.movies[i].title > data.movies[j].title) {
+                temp = data.movies[i];
+                data.movies[i] = data.movies[j];
+                data.movies[j] = temp;
+            }
+        }
+    }
+}
